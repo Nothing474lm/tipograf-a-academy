@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Tipografía Básica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Merriweather:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Typography Fundamentals Section */
+        .typography-fundamentals {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 400;
+            margin-bottom: 60px;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .typography-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .typography-card {
+            background: #f8f9fa;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .typography-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #000 0%, #666 100%);
+        }
+
+        .typography-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .typography-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .typography-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .typography-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .typography-card li {
+            color: #333;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .typography-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #000;
+        }
+
+        /* Font Demo Section */
+        .font-demo {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .font-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .font-card {
+            background: #fff;
+            padding: 40px;
+            border-left: 4px solid #000;
+            transition: all 0.3s ease;
+        }
+
+        .font-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .serif-demo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .sans-serif-demo {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .monospace-demo {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .script-demo {
+            font-family: 'Merriweather', serif;
+        }
+
+        .font-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .font-card .font-name {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .font-card .sample-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .font-card .use-case {
+            font-size: 0.9rem;
+            color: #666;
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+        }
+
+        /* Typography Rules Section */
+        .typography-rules {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .rule-card {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .rule-card:hover {
+            background: #e9ecef;
+        }
+
+        .rule-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #000;
+            color: #fff;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .rule-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .rule-card p {
+            color: #666;
+        }
+
+        /* Interactive Typography Playground */
+        .typography-playground {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .playground-title {
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .playground-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background: #555;
+            color: #fff;
+            min-width: 120px;
+        }
+
+        .demo-text {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+            font-size: 2rem;
+            line-height: 1.4;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Practice Section */
+        .practice {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .practice-item {
+            background: #f8f9fa;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #000;
+        }
+
+        .practice-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .practice-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #000 0%, #666 100%);
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .font-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .playground-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .demo-text {
+                font-size: 1.5rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">TypeAcademy</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#fundamentos">Fundamentos</a></li>
+                <li><a href="#practica">Práctica</a></li>
+                <li><a href="#playground">Playground</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Tipografía Básica</h1>
+            <p>Domina los fundamentos tipográficos del diseño gráfico en 2 semanas</p>
+            <a href="#fundamentos" class="cta-button">Comenzar Aprendizaje</a>
+        </div>
+    </section>
+
+    <!-- Typography Fundamentals Section -->
+    <section class="typography-fundamentals" id="fundamentos">
+        <div class="container">
+            <h2 class="section-title">Fundamentos Tipográficos</h2>
+            <div class="typography-grid">
+                <div class="typography-card">
+                    <h3>Anatomía Tipográfica</h3>
+                    <p>Elementos que componen cada letra y carácter</p>
+                    <ul>
+                        <li>Línea base: Línea sobre la que se apoyan las letras</li>
+                        <li>Altura x: Altura de letras minúsculas sin ascendentes</li>
+                        <li>Ascendentes: Partes que suben (b, d, h, k, l)</li>
+                        <li>Descendentes: Partes que bajan (g, j, p, q, y)</li>
+                        <li>Serifa: Remates decorativos en los extremos</li>
+                    </ul>
+                </div>
+
+                <div class="typography-card">
+                    <h3>Clasificación de Fuentes</h3>
+                    <p>Categorías principales según sus características</p>
+                    <ul>
+                        <li>Serif: Con remates decorativos (Times, Georgia)</li>
+                        <li>Sans Serif: Sin remates (Arial, Helvetica)</li>
+                        <li>Monospace: Ancho fijo (Courier, Monaco)</li>
+                        <li>Script: Cursivas y caligráficas</li>
+                        <li>Display: Decorativas para títulos</li>
+                    </ul>
+                </div>
+
+                <div class="typography-card">
+                    <h3>Espaciado y Ritmo</h3>
+                    <p>Relaciones espaciales para mejorar legibilidad</p>
+                    <ul>
+                        <li>Kerning: Espacio entre caracteres específicos</li>
+                        <li>Tracking: Espacio general entre caracteres</li>
+                        <li>Leading: Espacio entre líneas de texto</li>
+                        <li>Párrafo: Espacios entre bloques de texto</li>
+                        <li>Márgenes: Espacios alrededor del contenido</li>
+                    </ul>
+                </div>
+
+                <div class="typography-card">
+                    <h3>Jerarquía Visual</h3>
+                    <p>Organización de información por importancia</p>
+                    <ul>
+                        <li>Títulos: Mayor tamaño y peso visual</li>
+                        <li>Subtítulos: Tamaño intermedio</li>
+                        <li>Cuerpo: Texto principal optimizado para lectura</li>
+                        <li>Captions: Texto secundario más pequeño</li>
+                        <li>Contraste: Diferenciación visual clara</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Font Demo Section -->
+    <section class="font-demo">
+        <div class="container">
+            <h2 class="section-title">Demostraciones de Fuentes</h2>
+            <div class="font-grid">
+                <div class="font-card">
+                    <div class="font-name">Playfair Display - Serif</div>
+                    <h3 class="serif-demo">Elegancia Clásica</h3>
+                    <p class="sample-text serif-demo">
+                        Las fuentes serif aportan sofisticación y legibilidad en textos largos. 
+                        Sus remates guían el ojo naturalmente a través de las líneas.
+                    </p>
+                    <p class="use-case">Ideal para: Libros, revistas, sitios web elegantes</p>
+                </div>
+
+                <div class="font-card">
+                    <div class="font-name">Inter - Sans Serif</div>
+                    <h3 class="sans-serif-demo">Modernidad Limpia</h3>
+                    <p class="sample-text sans-serif-demo">
+                        Las fuentes sans serif ofrecen claridad y simplicidad. 
+                        Son perfectas para pantallas digitales y diseños contemporáneos.
+                    </p>
+                    <p class="use-case">Ideal para: Interfaces, logotipos, contenido digital</p>
+                </div>
+
+                <div class="font-card">
+                    <div class="font-name">JetBrains Mono - Monospace</div>
+                    <h3 class="monospace-demo">Precisión Técnica</h3>
+                    <p class="sample-text monospace-demo">
+                        Las fuentes monospace mantienen igual ancho para todos los 
+                        caracteres, creando alineación perfecta y ritmo uniforme.
+                    </p>
+                    <p class="use-case">Ideal para: Código, tablas, documentos técnicos</p>
+                </div>
+
+                <div class="font-card">
+                    <div class="font-name">Merriweather - Serif Legible</div>
+                    <h3 class="script-demo">Calidez Humanista</h3>
+                    <p class="sample-text script-demo">
+                        Diseñada específicamente para pantallas, combina la tradición 
+                        serif con optimización digital para máxima legibilidad.
+                    </p>
+                    <p class="use-case">Ideal para: Blogs, artículos, contenido editorial</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography Rules Section -->
+    <section class="typography-rules">
+        <div class="container">
+            <h2 class="section-title">Reglas de Oro</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">
+                Principios fundamentales para una tipografía efectiva
+            </p>
+            
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-number">1</div>
+                    <h3>Máximo 2-3 Fuentes</h3>
+                    <p>Combina una serif con una sans serif, o usa una familia tipográfica completa con diferentes pesos.</p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">2</div>
+                    <h3>Jerarquía Clara</h3>
+                    <p>Establece diferencias visuales evidentes entre títulos, subtítulos y texto corrido.</p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">3</div>
+                    <h3>Legibilidad Primero</h3>
+                    <p>Prioriza siempre la legibilidad sobre la decoración. El mensaje debe ser claro.</p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">4</div>
+                    <h3>Espaciado Consistente</h3>
+                    <p>Mantén proporciones armónicas en interlineado, párrafos y márgenes.</p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">5</div>
+                    <h3>Contraste Apropiado</h3>
+                    <p>Asegura suficiente contraste entre texto y fondo para accesibilidad.</p>
+                </div>
+
+                <div class="rule-card">
+                    <div class="rule-number">6</div>
+                    <h3>Contexto Adecuado</h3>
+                    <p>Elige fuentes apropiadas para el medio: pantalla, impreso, móvil, etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Typography Playground -->
+    <section class="typography-playground" id="playground">
+        <div class="container">
+            <h2 class="playground-title">Laboratorio Tipográfico</h2>
+            <p>Experimenta con diferentes fuentes, tamaños y espaciado</p>
+            
+            <div class="playground-controls">
+                <div class="control-group">
+                    <label for="fontFamily">Familia Tipográfica</label>
+                    <select id="fontFamily">
+                        <option value="'Playfair Display', serif">Playfair Display</option>
+                        <option value="'Inter', sans-serif">Inter</option>
+                        <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+                        <option value="'Merriweather', serif">Merriweather</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="fontSize">Tamaño</label>
+                    <input type="range" id="fontSize" min="16" max="72" value="32">
+                </div>
+
+                <div class="control-group">
+                    <label for="lineHeight">Interlineado</label>
+                    <input type="range" id="lineHeight" min="1" max="2" step="0.1" value="1.4">
+                </div>
+
+                <div class="control-group">
+                    <label for="letterSpacing">Espaciado</label>
+                    <input type="range" id="letterSpacing" min="-2" max="10" step="0.5" value="0">
+                </div>
+
+                <div class="control-group">
+                    <label for="fontWeight">Peso</label>
+                    <select id="fontWeight">
+                        <option value="300">Light</option>
+                        <option value="400">Regular</option>
+                        <option value="500">Medium</option>
+                        <option value="600">Semibold</option>
+                        <option value="700">Bold</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="demo-text" id="demoText">
+                La tipografía es el arte y la técnica de organizar el texto de manera que resulte legible, claro y visualmente atractivo para el lector.
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="practice" id="practica">
+        <div class="container">
+            <h2 class="section-title">Plan de Práctica - 14 Días</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px;">
+                Ejercicios estructurados para dominar la tipografía básica
+            </p>
+            
+            <div class="practice-grid">
+                <div class="practice-item">
+                    <h3>Días 1-3: Identificación</h3>
+                    <p>Analizar 10 fuentes diarias. Clasificar en categorías y identificar características únicas de cada una.</p>
+                </div>
+
+                <div class="practice-item">
+                    <h3>Días 4-6: Combinaciones</h3>
+                    <p>Crear 5 combinaciones tipográficas diarias. Experimentar con serif + sans serif en diferentes contextos.</p>
+                </div>
+
+                <div class="practice-item">
+                    <h3>Días 7-9: Jerarquía</h3>
+                    <p>Diseñar sistemas de jerarquía visual. Crear escalas tipográficas para diferentes tipos de contenido.</p>
+                </div>
+
+                <div class="practice-item">
+                    <h3>Días 10-12: Espaciado</h3>
+                    <p>Optimizar kerning, tracking y leading. Practicar con textos largos y titulares impactantes.</p>
+                </div>
+
+                <div class="practice-item">
+                    <h3>Días 13-14: Proyecto</h3>
+                    <p>Aplicar todo lo aprendido en un proyecto completo: cartel, revista o sitio web con tipografía como protagonista.</p>
+                </div>
+
+                <div class="practice-item">
+                    <h3>Recursos</h3>
+                    <p>Google Fonts, Adobe Fonts, Type Scale, análisis de tipografía en Behance y diseños editoriales.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">TypeAcademy</div>
+                <ul class="footer-links">
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Recursos</a></li>
+                    <li><a href="#">Fuentes</a></li>
+                </ul>
+            </div>
+            <p>&copy; 2025 Academia de Tipografía Básica. Donde las letras cobran vida.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Progress bar
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Typography Playground
+        const demoText = document.getElementById('demoText');
+        const fontFamily = document.getElementById('fontFamily');
+        const fontSize = document.getElementById('fontSize');
+        const lineHeight = document.getElementById('lineHeight');
+        const letterSpacing = document.getElementById('letterSpacing');
+        const fontWeight = document.getElementById('fontWeight');
+
+        function updateTypography() {
+            demoText.style.fontFamily = fontFamily.value;
+            demoText.style.fontSize = fontSize.value + 'px';
+            demoText.style.lineHeight = lineHeight.value;
+            demoText.style.letterSpacing = letterSpacing.value + 'px';
+            demoText.style.fontWeight = fontWeight.value;
+        }
+
+        fontFamily.addEventListener('change', updateTypography);
+        fontSize.addEventListener('input', updateTypography);
+        lineHeight.addEventListener('input', updateTypography);
+        letterSpacing.addEventListener('input', updateTypography);
+        fontWeight.addEventListener('change', updateTypography);
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards
+        document.querySelectorAll('.typography-card, .font-card, .rule-card, .practice-item').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Sample texts for demo
+        const sampleTexts = [
+            "La tipografía es el arte y la técnica de organizar el texto de manera que resulte legible, claro y visualmente atractivo para el lector.",
+            "El diseño tipográfico equilibra forma y función para comunicar ideas de manera efectiva.",
+            "Cada fuente tiene personalidad propia y transmite emociones específicas al lector.",
+            "La armonía tipográfica se logra mediante el balance entre contraste, ritmo y proporción."
+        ];
+
+        let currentTextIndex = 0;
+        setInterval(() => {
+            currentTextIndex = (currentTextIndex + 1) % sampleTexts.length;
+            demoText.style.opacity = '0.5';
+            setTimeout(() => {
+                demoText.textContent = sampleTexts[currentTextIndex];
+                demoText.style.opacity = '1';
+            }, 300);
+        }, 5000);
+
+        // Font card hover effects
+        document.querySelectorAll('.font-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const sampleText = card.querySelector('.sample-text');
+                sampleText.style.transform = 'scale(1.02)';
+                sampleText.style.transition = 'transform 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const sampleText = card.querySelector('.sample-text');
+                sampleText.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+Agregar academia de tipografía
