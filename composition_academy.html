@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia de Composición Visual</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c2c2c;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 400;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background: #000;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 69px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #000;
+            transition: width 0.3s ease;
+            z-index: 1001;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -2px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            border: 2px solid #000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        /* Principles Section */
+        .principles {
+            padding: 100px 0;
+            background: #fafafa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            color: #000;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 80px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .principle-card {
+            background: #ffffff;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid #e0e0e0;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: #000;
+        }
+
+        .principle-number {
+            position: absolute;
+            top: -15px;
+            left: 40px;
+            background: #000;
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .principle-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .principle-card p {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .principle-examples {
+            list-style: none;
+            padding: 0;
+        }
+
+        .principle-examples li {
+            color: #333;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+            font-weight: 300;
+        }
+
+        .principle-examples li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #666;
+        }
+
+        /* Visual Demos Section */
+        .visual-demos {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
+        }
+
+        .demo-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            border-color: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .demo-visual {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .demo-content {
+            padding: 30px;
+        }
+
+        .demo-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .demo-card p {
+            color: #666;
+            line-height: 1.6;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        /* Demo visuals - Minimalist B&W */
+        .balance-demo {
+            background: #ffffff;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .balance-item {
+            background: #000;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .balance-item:nth-child(2n) {
+            background: #666;
+        }
+
+        .contrast-demo {
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 40px;
+        }
+
+        .contrast-item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .contrast-item:nth-child(1) { 
+            background: #000; 
+            color: #fff; 
+        }
+        .contrast-item:nth-child(2) { 
+            background: #666; 
+            color: #fff; 
+        }
+        .contrast-item:nth-child(3) { 
+            background: #ccc; 
+            color: #000; 
+        }
+        .contrast-item:nth-child(4) { 
+            background: #fff; 
+            color: #000; 
+            border: 1px solid #ccc;
+        }
+
+        .hierarchy-demo {
+            background: #ffffff;
+            padding: 40px;
+            color: #000;
+            text-align: left;
+        }
+
+        .hierarchy-demo h4 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hierarchy-demo h5 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .hierarchy-demo p {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 300;
+        }
+
+        .alignment-demo {
+            background: #ffffff;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .alignment-item {
+            background: #f5f5f5;
+            padding: 12px 20px;
+            color: #333;
+            font-weight: 300;
+            font-size: 14px;
+            border-left: 3px solid #000;
+        }
+
+        .alignment-item:nth-child(1) { text-align: left; }
+        .alignment-item:nth-child(2) { text-align: center; border-left-color: #666; }
+        .alignment-item:nth-child(3) { text-align: right; border-left-color: #ccc; }
+
+        .proximity-demo {
+            background: #ffffff;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .group-item {
+            background: #f5f5f5;
+            padding: 8px 15px;
+            color: #333;
+            font-size: 12px;
+            text-align: center;
+            font-weight: 300;
+            border: 1px solid #e0e0e0;
+        }
+
+        .group:first-child .group-item {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        .repetition-demo {
+            background: #ffffff;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .repeat-item {
+            background: #000;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        .repeat-item:nth-child(2n) {
+            background: #666;
+        }
+
+        .repeat-item:nth-child(4n) {
+            background: #ccc;
+            color: #000;
+        }
+
+        /* Interactive Playground */
+        .composition-playground {
+            padding: 100px 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+
+        .playground-title {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .playground-subtitle {
+            margin-bottom: 60px;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .playground-controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            color: #ccc;
+            font-size: 13px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .control-group select,
+        .control-group input[type="range"] {
+            padding: 10px 15px;
+            border: 1px solid #333;
+            background: #000;
+            color: #fff;
+            min-width: 120px;
+            font-size: 13px;
+        }
+
+        .control-group select:focus,
+        .control-group input:focus {
+            outline: none;
+            border-color: #fff;
+        }
+
+        .playground-canvas {
+            background: #fff;
+            padding: 60px;
+            margin: 20px auto;
+            max-width: 600px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .composition-elements {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .composition-element {
+            width: 80px;
+            height: 80px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        /* Rules Section */
+        .composition-rules {
+            padding: 100px 0;
+            background: #fafafa;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .rule-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .rule-card:hover {
+            border-color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+        }
+
+        .rule-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #000;
+            color: #fff;
+            line-height: 40px;
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .rule-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #000;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .rule-card p {
+            color: #666;
+            line-height: 1.6;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        /* Practice Section */
+        .practice {
+            padding: 100px 0;
+            background: #ffffff;
+        }
+
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .practice-item {
+            background: #fafafa;
+            padding: 40px;
+            transition: all 0.3s ease;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .practice-item:hover {
+            background: #fff;
+            border-color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.08);
+        }
+
+        .practice-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #000;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .practice-item p {
+            color: #666;
+            line-height: 1.7;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .practice-week {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #000;
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 11px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            color: #666;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .playground-controls {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .playground-canvas {
+                padding: 30px;
+                margin: 20px 0;
+            }
+
+            .proximity-demo {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .repetition-demo {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">Composition</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#principios">Principios</a></li>
+                <li><a href="#demos">Demos</a></li>
+                <li><a href="#laboratorio">Laboratorio</a></li>
+                <li><a href="#practica">Práctica</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <h1>Composición Visual</h1>
+            <p>Los principios fundamentales del diseño gráfico explicados de forma clara, minimalista y profesional</p>
+            <a href="#principios" class="cta-button">Comenzar</a>
+        </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section class="principles" id="principios">
+        <div class="container">
+            <h2 class="section-title">Principios Fundamentales</h2>
+            <p class="section-subtitle">Seis conceptos esenciales que todo diseñador debe dominar para crear composiciones efectivas</p>
+            
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-number">01</div>
+                    <h3>Equilibrio</h3>
+                    <p>La distribución armónica de elementos visuales para crear estabilidad y orden en la composición.</p>
+                    <ul class="principle-examples">
+                        <li>Equilibrio simétrico: distribución idéntica a ambos lados</li>
+                        <li>Equilibrio asimétrico: pesos visuales diferentes balanceados</li>
+                        <li>Equilibrio radial: elementos distribuidos desde un centro</li>
+                        <li>Equilibrio dinámico: tensión controlada entre elementos</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">02</div>
+                    <h3>Contraste</h3>
+                    <p>La diferenciación entre elementos para crear jerarquía visual y captar la atención.</p>
+                    <ul class="principle-examples">
+                        <li>Contraste tonal: diferencias entre claros y oscuros</li>
+                        <li>Contraste de tamaño: elementos grandes versus pequeños</li>
+                        <li>Contraste de forma: orgánico versus geométrico</li>
+                        <li>Contraste de textura: superficies lisas versus rugosas</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">03</div>
+                    <h3>Jerarquía</h3>
+                    <p>La organización de elementos según importancia para guiar la lectura visual del diseño.</p>
+                    <ul class="principle-examples">
+                        <li>Jerarquía de tamaño: elementos importantes más grandes</li>
+                        <li>Jerarquía tonal: valores más oscuros para destacar</li>
+                        <li>Jerarquía de posición: ubicación estratégica</li>
+                        <li>Jerarquía tipográfica: diferentes pesos y estilos</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">04</div>
+                    <h3>Alineación</h3>
+                    <p>La organización de elementos siguiendo líneas invisibles para crear orden y coherencia.</p>
+                    <ul class="principle-examples">
+                        <li>Alineación izquierda: elementos alineados al margen</li>
+                        <li>Alineación centrada: elementos centrados en el espacio</li>
+                        <li>Alineación justificada: distribución uniforme del espacio</li>
+                        <li>Alineación por grilla: sistema estructurado de columnas</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">05</div>
+                    <h3>Proximidad</h3>
+                    <p>La agrupación de elementos relacionados mediante cercanía espacial para crear unidad.</p>
+                    <ul class="principle-examples">
+                        <li>Agrupación funcional: elementos relacionados juntos</li>
+                        <li>Separación conceptual: espacios entre grupos diferentes</li>
+                        <li>Bloques informativos: contenido organizado en secciones</li>
+                        <li>Flujo visual: conexiones entre elementos cercanos</li>
+                    </ul>
+                </div>
+
+                <div class="principle-card">
+                    <div class="principle-number">06</div>
+                    <h3>Repetición</h3>
+                    <p>El uso consistente de elementos visuales para crear unidad y coherencia en el diseño.</p>
+                    <ul class="principle-examples">
+                        <li>Repetición formal: formas geométricas consistentes</li>
+                        <li>Repetición tonal: valores similares repetidos</li>
+                        <li>Repetición tipográfica: familias de fuentes coherentes</li>
+                        <li>Patrones rítmicos: secuencias visuales organizadas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Demos Section -->
+    <section class="visual-demos" id="demos">
+        <div class="container">
+            <h2 class="section-title">Demostraciones Visuales</h2>
+            <p class="section-subtitle">Ejemplos prácticos que ilustran cada principio de composición aplicado al diseño</p>
+            
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-visual balance-demo">
+                        <div class="balance-item">A</div>
+                        <div class="balance-item">B</div>
+                        <div class="balance-item">C</div>
+                        <div class="balance-item">D</div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Equilibrio Simétrico</h3>
+                        <p>La distribución equilibrada de elementos crea estabilidad visual. Los pesos visuales se balancean para generar armonía y orden en la composición.</p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-visual contrast-demo">
+                        <div class="contrast-item">A</div>
+                        <div class="contrast-item">B</div>
+                        <div class="contrast-item">C</div>
+                        <div class="contrast-item">D</div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Contraste Tonal</h3>
+                        <p>Las diferencias tonales crean profundidad y jerarquía. Los elementos más oscuros tienden a avanzar mientras los claros retroceden.</p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-visual hierarchy-demo">
+                        <h4>Título Principal</h4>
+                        <h5>Subtítulo Secundario</h5>
+                        <p>Texto de párrafo con menor jerarquía visual</p>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Jerarquía Tipográfica</h3>
+                        <p>Los diferentes tamaños y pesos guían la lectura. La jerarquía establece un orden de importancia clara para la información.</p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-visual alignment-demo">
+                        <div class="alignment-item">Alineado a la izquierda</div>
+                        <div class="alignment-item">Centrado</div>
+                        <div class="alignment-item">Alineado a la derecha</div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Sistemas de Alineación</h3>
+                        <p>Las alineaciones crean orden y estructura. Cada tipo de alineación genera un ritmo visual diferente y afecta la legibilidad.</p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-visual proximity-demo">
+                        <div class="group">
+                            <div class="group-item">Grupo A</div>
+                            <div class="group-item">Elemento 1</div>
+                            <div class="group-item">Elemento 2</div>
+                        </div>
+                        <div class="group">
+                            <div class="group-item">Grupo B</div>
+                            <div class="group-item">Item X</div>
+                            <div class="group-item">Item Y</div>
+                        </div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Agrupación por Proximidad</h3>
+                        <p>Los elementos cercanos se perciben como relacionados. La proximidad establece conexiones visuales y organiza la información.</p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <div class="demo-visual repetition-demo">
+                        <div class="repeat-item">•</div>
+                        <div class="repeat-item">•</div>
+                        <div class="repeat-item">•</div>
+                        <div class="repeat-item">•</div>
+                    </div>
+                    <div class="demo-content">
+                        <h3>Repetición y Patrón</h3>
+                        <p>La repetición de elementos crea unidad y ritmo. Los patrones consistentes unifican la composición y establecen una identidad visual coherente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Playground -->
+    <section class="composition-playground" id="laboratorio">
+        <div class="container">
+            <h2 class="section-title playground-title">Laboratorio Interactivo</h2>
+            <p class="section-subtitle playground-subtitle">Experimenta con los principios de composición en tiempo real</p>
+            
+            <div class="playground-controls">
+                <div class="control-group">
+                    <label>Principio</label>
+                    <select id="principleSelect">
+                        <option value="balance">Equilibrio</option>
+                        <option value="contrast">Contraste</option>
+                        <option value="hierarchy">Jerarquía</option>
+                        <option value="alignment">Alineación</option>
+                        <option value="proximity">Proximidad</option>
+                        <option value="repetition">Repetición</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Elementos</label>
+                    <input type="range" id="elementsCount" min="2" max="8" value="4">
+                    <span id="elementsValue">4</span>
+                </div>
+                
+                <div class="control-group">
+                    <label>Espaciado</label>
+                    <input type="range" id="spacing" min="10" max="50" value="20">
+                    <span id="spacingValue">20px</span>
+                </div>
+                
+                <div class="control-group">
+                    <label>Tamaño</label>
+                    <input type="range" id="elementSize" min="40" max="120" value="80">
+                    <span id="sizeValue">80px</span>
+                </div>
+            </div>
+            
+            <div class="playground-canvas" id="playgroundCanvas">
+                <div class="composition-elements" id="compositionElements">
+                    <!-- Elements will be generated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Composition Rules -->
+    <section class="composition-rules" id="reglas">
+        <div class="container">
+            <h2 class="section-title">Reglas de Oro</h2>
+            <p class="section-subtitle">Principios universales para crear composiciones efectivas y memorables</p>
+            
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <div class="rule-number">1</div>
+                    <h3>Menos es Más</h3>
+                    <p>La simplicidad comunica con mayor claridad. Elimina elementos innecesarios y enfócate en lo esencial para lograr mayor impacto visual.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">2</div>
+                    <h3>Jerarquía Clara</h3>
+                    <p>Establece un orden de importancia evidente. El espectador debe saber inmediatamente qué ver primero, segundo y tercero.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">3</div>
+                    <h3>Consistencia Visual</h3>
+                    <p>Mantén coherencia en tipografías, colores y espacios. La repetición de elementos crea unidad y profesionalismo.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">4</div>
+                    <h3>Espacio Negativo</h3>
+                    <p>El espacio vacío es tan importante como los elementos. Permite que la composición respire y mejora la legibilidad.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">5</div>
+                    <h3>Contraste Funcional</h3>
+                    <p>Usa el contraste con propósito. Debe dirigir la atención hacia elementos importantes, no crear ruido visual.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">6</div>
+                    <h3>Alineación Precisa</h3>
+                    <p>Cada elemento debe tener una razón para estar donde está. Las alineaciones invisibles crean orden y profesionalismo.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">7</div>
+                    <h3>Proximidad Lógica</h3>
+                    <p>Agrupa elementos relacionados y separa los diferentes. La proximidad comunica relaciones sin necesidad de líneas.</p>
+                </div>
+                
+                <div class="rule-card">
+                    <div class="rule-number">8</div>
+                    <h3>Función Antes que Forma</h3>
+                    <p>El diseño debe funcionar primero, ser bello después. La estética nunca debe comprometer la funcionalidad.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Section -->
+    <section class="practice" id="practica">
+        <div class="container">
+            <h2 class="section-title">Plan de Práctica</h2>
+            <p class="section-subtitle">Un programa estructurado de 8 semanas para dominar los principios de composición visual</p>
+            
+            <div class="practice-grid">
+                <div class="practice-item">
+                    <div class="practice-week">Semana 1</div>
+                    <h3>Fundamentos del Equilibrio</h3>
+                    <p>Estudia y practica composiciones simétricas y asimétricas. Crea 10 layouts diferentes usando solo formas geométricas básicas, enfocándote en la distribución visual del peso.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 2</div>
+                    <h3>Dominando el Contraste</h3>
+                    <p>Experimenta con contrastes tonales, de tamaño y forma. Diseña composiciones usando únicamente blanco y negro, explorando todas las posibilidades de contraste sin color.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 3</div>
+                    <h3>Jerarquía Visual Efectiva</h3>
+                    <p>Crea sistemas de información con múltiples niveles. Practica con diferentes tamaños tipográficos y pesos visuales para guiar la lectura del espectador.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 4</div>
+                    <h3>Sistemas de Alineación</h3>
+                    <p>Construye grillas complejas y practica alineaciones precisas. Experimenta con diferentes tipos de alineación y su impacto en la percepción del orden.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 5</div>
+                    <h3>Proximidad y Agrupación</h3>
+                    <p>Organiza información compleja usando solo proximidad espacial. Practica la creación de relaciones visuales sin líneas o marcos explícitos.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 6</div>
+                    <h3>Repetición y Patrones</h3>
+                    <p>Desarrolla sistemas visuales coherentes usando repetición. Crea familias de elementos que trabajen juntos manteniendo variedad e interés.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 7</div>
+                    <h3>Integración de Principios</h3>
+                    <p>Combina todos los principios en proyectos complejos. Diseña sistemas completos que demuestren dominio de múltiples conceptos simultáneamente.</p>
+                </div>
+                
+                <div class="practice-item">
+                    <div class="practice-week">Semana 8</div>
+                    <h3>Proyecto Final</h3>
+                    <p>Desarrolla un proyecto integral que demuestre tu dominio de todos los principios. Incluye proceso de diseño, decisiones fundamentadas y presentación profesional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">Composition</div>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#principios">Principios</a></li>
+                    <li><a href="#demos">Demos</a></li>
+                    <li><a href="#laboratorio">Laboratorio</a></li>
+                    <li><a href="#practica">Práctica</a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Academia de Composición Visual. Dedicado al arte del diseño minimalista y funcional.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Progress Bar
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        }
+
+        window.onscroll = function() {
+            updateProgressBar();
+        };
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive Playground
+        function initPlayground() {
+            const principleSelect = document.getElementById('principleSelect');
+            const elementsCount = document.getElementById('elementsCount');
+            const spacing = document.getElementById('spacing');
+            const elementSize = document.getElementById('elementSize');
+            const elementsValue = document.getElementById('elementsValue');
+            const spacingValue = document.getElementById('spacingValue');
+            const sizeValue = document.getElementById('sizeValue');
+            const compositionElements = document.getElementById('compositionElements');
+
+            function updateValues() {
+                elementsValue.textContent = elementsCount.value;
+                spacingValue.textContent = spacing.value + 'px';
+                sizeValue.textContent = elementSize.value + 'px';
+            }
+
+            function generateElements() {
+                const count = parseInt(elementsCount.value);
+                const gap = parseInt(spacing.value);
+                const size = parseInt(elementSize.value);
+                const principle = principleSelect.value;
+                
+                compositionElements.innerHTML = '';
+                compositionElements.style.gap = gap + 'px';
+
+                for (let i = 0; i < count; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'composition-element';
+                    element.style.width = size + 'px';
+                    element.style.height = size + 'px';
+                    element.textContent = String.fromCharCode(65 + i); // A, B, C, etc.
+
+                    // Apply principle-specific styles
+                    switch (principle) {
+                        case 'balance':
+                            element.style.background = i % 2 === 0 ? '#000' : '#666';
+                            break;
+                        case 'contrast':
+                            const colors = ['#000', '#666', '#ccc', '#fff'];
+                            element.style.background = colors[i % colors.length];
+                            element.style.color = i % colors.length < 2 ? '#fff' : '#000';
+                            if (i % colors.length === 3) element.style.border = '1px solid #ccc';
+                            break;
+                        case 'hierarchy':
+                            const sizes = [size * 1.2, size, size * 0.8, size * 0.6];
+                            element.style.width = sizes[i % sizes.length] + 'px';
+                            element.style.height = sizes[i % sizes.length] + 'px';
+                            element.style.background = i === 0 ? '#000' : '#666';
+                            break;
+                        case 'alignment':
+                            compositionElements.style.flexDirection = 'column';
+                            element.style.alignSelf = i % 3 === 0 ? 'flex-start' : i % 3 === 1 ? 'center' : 'flex-end';
+                            break;
+                        case 'proximity':
+                            if (i < count / 2) {
+                                element.style.background = '#000';
+                                element.style.marginRight = i === Math.floor(count / 2) - 1 ? gap * 2 + 'px' : '0';
+                            } else {
+                                element.style.background = '#666';
+                            }
+                            break;
+                        case 'repetition':
+                            element.style.background = i % 3 === 0 ? '#000' : i % 3 === 1 ? '#666' : '#ccc';
+                            element.style.color = i % 3 === 2 ? '#000' : '#fff';
+                            break;
+                    }
+
+                    compositionElements.appendChild(element);
+                }
+
+                // Reset alignment for non-alignment principles
+                if (principle !== 'alignment') {
+                    compositionElements.style.flexDirection = 'row';
+                }
+            }
+
+            // Event listeners
+            principleSelect.addEventListener('change', generateElements);
+            elementsCount.addEventListener('input', () => {
+                updateValues();
+                generateElements();
+            });
+            spacing.addEventListener('input', () => {
+                updateValues();
+                generateElements();
+            });
+            elementSize.addEventListener('input', () => {
+                updateValues();
+                generateElements();
+            });
+
+            // Initialize
+            updateValues();
+            generateElements();
+        }
+
+        // Initialize playground when page loads
+        document.addEventListener('DOMContentLoaded', initPlayground);
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.principle-card, .demo-card, .rule-card, .practice-item');
+            
+            elementsToAnimate.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
